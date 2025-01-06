@@ -1,0 +1,7 @@
+VRDrawing/Library/
+
+# Ignore the Logs folder inside
+VRDrawing/Logs/
+
+# Ignore the Temp folder inside
+VRDrawing/Temp/
