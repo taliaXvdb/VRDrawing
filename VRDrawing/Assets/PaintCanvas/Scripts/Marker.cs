@@ -13,6 +13,7 @@ public class Marker : MonoBehaviour
     private float _tipHeight;
     private RaycastHit _touch;
     private PaintCanvas _paintCanvas;
+    private PaintCanvasLine _paintCanvasLine;
     private Vector2 _touchpos;
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
@@ -74,9 +75,49 @@ public class Marker : MonoBehaviour
                 _touchedLastFrame = true;
                 return;
             }
+            else if (_touch.transform.CompareTag("PaintCanvasLine"))
+            {
+                if (_paintCanvasLine == null)
+                {
+                    _paintCanvasLine = _touch.transform.GetComponent<PaintCanvasLine>();
+                }
+
+                _touchpos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
+
+                var x = (int)(_touchpos.x * _paintCanvasLine.textureSize.x - _tipSize / 2);
+                var y = (int)(_touchpos.y * _paintCanvasLine.textureSize.y - _tipSize / 2);
+
+                if (y < 0 || y >= _paintCanvasLine.textureSize.y || x < 0 || x >= _paintCanvasLine.textureSize.x)
+                {
+                    return;
+                }
+
+                if (_touchedLastFrame)
+                {
+                    _paintCanvasLine.texture.SetPixels(x, y, _tipSize, _tipSize, _colors);
+
+                    for (float f = 0.01f; f < 1.0f; f += 0.01f)
+                    {
+                        var lerpX = (int)Mathf.Lerp(_lastTouchPos.x, x, f);
+                        var lerpY = (int)Mathf.Lerp(_lastTouchPos.y, y, f);
+                        _paintCanvasLine.texture.SetPixels(lerpX, lerpY, _tipSize, _tipSize, _colors);
+                    }
+
+                    transform.rotation = _lastTouchRot;
+
+                    _paintCanvasLine.texture.Apply();
+
+                }
+
+                _lastTouchPos = new Vector2(x, y);
+                _lastTouchRot = transform.rotation;
+                _touchedLastFrame = true;
+                return;
+            }
         }
 
         _paintCanvas = null;
+        _paintCanvasLine = null;
         _touchedLastFrame = false;
     }
 }
