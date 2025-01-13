@@ -12,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _animator = _mushroom.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("Tutorial Started!");
         DoingTutorial = true;
-        _gameManager.isTutorial = true;
+        _gameManager.isTutorial = false;
         StartMushroomPath();
     }
 
@@ -33,14 +34,20 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Tutorial Skipped!");
         _gameManager.isTutorial = false;
         DoingTutorial = false;
-        _mushroom.SetActive(false);
+        _animator.SetBool("IsDone", true);
+        StartCoroutine(Despawn());
     }
 
     public void StartMushroomPath()
     {
         Cinemachine.CinemachineDollyCart dollyCart = GameObject.FindObjectOfType<Cinemachine.CinemachineDollyCart>();
         dollyCart.enabled = true;
-        _animator = _mushroom.GetComponent<Animator>();
         _animator.SetBool("IsWalking", true);
+    }
+
+    private IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(_mushroom);
     }
 }
