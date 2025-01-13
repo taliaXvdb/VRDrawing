@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class DollyPathEndEvent : MonoBehaviour
+public class MushroomActions : MonoBehaviour
 {
     [SerializeField] private CinemachineDollyCart _dollyCart;
     [SerializeField] private CinemachinePathBase _dollyPath1;
@@ -18,7 +18,6 @@ public class DollyPathEndEvent : MonoBehaviour
     void Start()
     {
         _animator = _mushroom.GetComponent<Animator>();
-        _animator.SetBool("Start", false);
     }
 
     void Update()

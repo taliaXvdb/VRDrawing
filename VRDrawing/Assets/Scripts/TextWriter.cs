@@ -15,7 +15,7 @@ public class TextWriter : MonoBehaviour
     [SerializeField] private AudioClip typingSound;
     private AudioSource audioSource;
     private bool isSkipping = false; // Flag to skip typing
-    private bool isTyping = false; // Flag to check if typing is in progress
+    public bool isTyping = false; // Flag to check if typing is in progress
 
     private void Start()
     {
