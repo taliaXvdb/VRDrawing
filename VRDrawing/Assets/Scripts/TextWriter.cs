@@ -16,9 +16,13 @@ public class TextWriter : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     private bool isSkipping = false; // Flag to skip typing
     public bool isTyping = false; // Flag to check if typing is in progress
+    private MushroomActions _mushroomActions;
+    private TutorialManager _tutorialManager;
 
-    private void Start()
+    public void Start()
     {
+        _mushroomActions = GameObject.FindObjectOfType<MushroomActions>();
+        _tutorialManager = GameObject.FindObjectOfType<TutorialManager>();
         uiText = canvas.GetComponentInChildren<TMP_Text>();
         if (uiText.CompareTag("FullText"))
         {
@@ -50,9 +54,27 @@ public class TextWriter : MonoBehaviour
         }
         isTyping = false;
         Debug.Log("Text has finished typing!");
-        foreach (Button button in buttons)
+        if (_tutorialManager.DoingTutorial)
         {
-            button.gameObject.SetActive(true);
+            if (_mushroomActions._pathIndex == 1)
+            {
+                buttons[0].gameObject.SetActive(true);
+            }
+            else if (_mushroomActions._pathIndex == 2)
+            {
+                buttons[1].gameObject.SetActive(true);
+            }
+            else if (_mushroomActions._pathIndex == 3)
+            {
+                buttons[2].gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (Button button in buttons)
+            {
+                button.gameObject.SetActive(true);
+            }
         }
     }
 
