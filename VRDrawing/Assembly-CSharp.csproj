@@ -83,8 +83,10 @@
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\VegetationBendControl.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ExitGame.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BezierCurve.cs" />
+    <Compile Include="Assets\Scripts\TutorialManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\LaunchProjectile.cs" />
+    <Compile Include="Assets\Scripts\TextWriter.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\StepManager.cs" />
     <Compile Include="Assets\Scripts\MushroomActions.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\BushLeafTrigger.cs" />
