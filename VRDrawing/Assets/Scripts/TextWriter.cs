@@ -13,7 +13,7 @@ public class TextWriter : MonoBehaviour
     private string fullText;
     public float typingSpeed = 0.05f;
     [SerializeField] private AudioClip typingSound;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource _audioSource;
     private bool isSkipping = false; // Flag to skip typing
     public bool isTyping = false; // Flag to check if typing is in progress
 
@@ -25,7 +25,6 @@ public class TextWriter : MonoBehaviour
             fullText = uiText.text;
             uiText.text = ""; // Clear the text
         }
-        audioSource = GetComponent<AudioSource>();
 
         isTyping = true;
         // Start the typing effect
@@ -43,10 +42,9 @@ public class TextWriter : MonoBehaviour
             }
 
             uiText.text += fullText[i];
-            if (typingSound != null && audioSource != null)
+            if (typingSound != null && _audioSource != null)
             {
-                audioSource.clip = typingSound;
-                audioSource.Play();
+                _audioSource.PlayOneShot(typingSound);
             }
             yield return new WaitForSeconds(typingSpeed);
         }
