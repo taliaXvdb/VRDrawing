@@ -857,14 +857,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Marker
       objectReference: {fileID: 0}
-    - target: {fileID: 5888545514401668778, guid: bb760b41e99b67b4d9178a6757db706d, type: 3}
-      propertyPath: m_Constraints
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7319601404863222712, guid: bb760b41e99b67b4d9178a6757db706d, type: 3}
-      propertyPath: _tipSize
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 9145023133274124718, guid: bb760b41e99b67b4d9178a6757db706d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8050099
