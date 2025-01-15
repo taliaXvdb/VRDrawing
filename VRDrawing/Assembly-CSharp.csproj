@@ -72,6 +72,7 @@
     <Compile Include="Assets\PaintCanvas\Scripts\PaintCanvas.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Rotator.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRKnob.cs" />
+    <Compile Include="Assets\PaintCanvas\Scripts\PaintBrush.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BooleanToggleVisualsController.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\RayAttachModifier.cs" />
     <Compile Include="Assets\Reversed Interactive\The Portal Collection\Scripts\SimpleCameraControllerPortals.cs" />

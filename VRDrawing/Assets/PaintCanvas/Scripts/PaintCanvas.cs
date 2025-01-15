@@ -10,6 +10,8 @@ public class PaintCanvas : MonoBehaviour
     {
         var r = GetComponent<Renderer>();
         texture = new Texture2D((int)textureSize.x, (int)textureSize.y);
+        texture.filterMode = FilterMode.Bilinear; // Smooth blending
+        texture.wrapMode = TextureWrapMode.Clamp; // Prevents wrapping at the edges
         r.material.mainTexture = texture;
     }
 }

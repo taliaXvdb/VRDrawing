@@ -252,13 +252,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401976752}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d2b2dbbb2899414f93667947ff3f289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _markerTip: {fileID: 1457201195}
   _tipSize: 25
+--- !u!114 &401976758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401976752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad2617c27d1a204bab52e99b59e21cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _brushTip: {fileID: 1457201195}
+  _blendFactor: 0.8
+  _pressureFactor: 0.5
+  _brushSize: 15
 --- !u!1001 &441087506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -952,6 +968,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 731483942567644308, guid: bb760b41e99b67b4d9178a6757db706d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 401976753}
+    - targetCorrespondingSourceObject: {fileID: 731483942567644308, guid: bb760b41e99b67b4d9178a6757db706d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 401976758}
   m_SourcePrefab: {fileID: 100100000, guid: bb760b41e99b67b4d9178a6757db706d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
