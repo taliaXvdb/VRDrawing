@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5888545514401668778}
   - component: {fileID: 821471862501407177}
   - component: {fileID: 6162723708423925}
-  - component: {fileID: 6472616522014005237}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -46,7 +45,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731483942567644308}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4fb67882cfe64c42aa427df0497178f, type: 3}
   m_Name: 
@@ -78,7 +77,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!114 &821471862501407177
 MonoBehaviour:
@@ -216,22 +215,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _markerTip: {fileID: 6393859493149624402}
   _tipSize: 25
---- !u!114 &6472616522014005237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731483942567644308}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad2617c27d1a204bab52e99b59e21cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _brushTip: {fileID: 6393859493149624402}
-  _blendFactor: 0.8
-  _pressureFactor: 0.5
-  _brushSize: 15
 --- !u!1 &1427998163157647268
 GameObject:
   m_ObjectHideFlags: 0

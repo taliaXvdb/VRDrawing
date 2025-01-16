@@ -72,15 +72,18 @@
     <Compile Include="Assets\PaintCanvas\Scripts\PaintCanvas.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Rotator.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRKnob.cs" />
+    <Compile Include="Assets\PaintCanvas\Scripts\Paintbrush.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BooleanToggleVisualsController.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\RayAttachModifier.cs" />
     <Compile Include="Assets\Reversed Interactive\The Portal Collection\Scripts\SimpleCameraControllerPortals.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ButterflySpawnArea.cs" />
+    <Compile Include="Assets\PaintCanvas\Scripts\Eraser.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Callout.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\CalloutGazeController.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\PaintCanvasLine.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\SprayPaint.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\VegetationBendControl.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ExitGame.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\StepManager.cs" />
     <Compile Include="Assets\Scripts\MushroomActions.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\BushLeafTrigger.cs" />
+    <Compile Include="Assets\PaintCanvas\Scripts\Pencil.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\WindControl.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\AnchorVisuals.cs" />
@@ -989,6 +993,10 @@
       <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AI.Navigation">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Burst.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1071,6 +1079,10 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
@@ -1205,6 +1217,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AI.Navigation.Updater">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1223,6 +1239,10 @@
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AI.Navigation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.RuntimeDebugger.Editor">
