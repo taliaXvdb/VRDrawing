@@ -31,6 +31,8 @@ public class MushroomActions : MonoBehaviour
             if (!hasReachedEnd && Mathf.Approximately(_dollyCart.m_Position, _dollyPath1.PathLength))
             {
                 hasReachedEnd = true;
+                _animator.SetBool("IsWalking", false);
+                _animator.SetBool("IsIdle", true);
                 _tutorialManager.ShowHouse01();
             }
         }
@@ -39,6 +41,8 @@ public class MushroomActions : MonoBehaviour
             if (!hasReachedEnd && Mathf.Approximately(_dollyCart.m_Position, _dollyPath2.PathLength))
             {
                 hasReachedEnd = true;
+                _animator.SetBool("IsWalking", false);
+                _animator.SetBool("IsIdle", true);
                 _tutorialManager.ShowHouse02();
             }
         }
@@ -47,6 +51,8 @@ public class MushroomActions : MonoBehaviour
             if (!hasReachedEnd && Mathf.Approximately(_dollyCart.m_Position, _dollyPath3.PathLength))
             {
                 hasReachedEnd = true;
+                _animator.SetBool("IsWalking", false);
+                _animator.SetBool("IsIdle", true);
                 _tutorialManager.ShowHouse03();
             }
         }
@@ -55,13 +61,13 @@ public class MushroomActions : MonoBehaviour
     void OnPathEndReached()
     {
         Debug.Log("End of path reached! Triggering event...");
-        _animator.SetBool("IsIdle", true);
         if (_continuePath)
         {
             if (_pathIndex == 2)
             {
                 _dollyCart.m_Path = _dollyPath2;
                 _dollyCart.m_Position = 0;
+                _animator.SetBool("IsIdle", false);
                 _animator.SetBool("IsWalking", true);
                 Debug.Log("Switched to Path 2");
                 _continuePath = false;
@@ -71,6 +77,7 @@ public class MushroomActions : MonoBehaviour
             {
                 _dollyCart.m_Path = _dollyPath3;
                 _dollyCart.m_Position = 0;
+                _animator.SetBool("IsIdle", false);
                 _animator.SetBool("IsWalking", true);
                 Debug.Log("Switched to Path 2");
                 _continuePath = false;
@@ -79,6 +86,8 @@ public class MushroomActions : MonoBehaviour
             else
             {
                 Debug.Log("End of paths reached!");
+                _animator.SetBool("IsIdle", true);
+                _animator.SetBool("IsWalking", false);
                 hasReachedEnd = false;
             }
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Marker : MonoBehaviour
 {
     [SerializeField] private Transform _markerTip;
-    [SerializeField] private int _tipSize = 5;
+    [SerializeField] private int _tipSize = 15;
 
     private Renderer _renderer;
     private Color[] _colors;
