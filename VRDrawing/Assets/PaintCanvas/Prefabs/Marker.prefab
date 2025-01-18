@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 5888545514401668778}
   - component: {fileID: 821471862501407177}
   - component: {fileID: 6162723708423925}
+  - component: {fileID: 436328437282058887}
+  - component: {fileID: 7903011698363736888}
+  - component: {fileID: 9218896336593682732}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -77,7 +80,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &821471862501407177
 MonoBehaviour:
@@ -215,6 +218,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _markerTip: {fileID: 6393859493149624402}
   _tipSize: 25
+--- !u!114 &436328437282058887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731483942567644308}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6863ea751e2cdc4c8d73cff57496888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eraserTip: {fileID: 6393859493149624402}
+  _tipSize: 10
+  _backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &7903011698363736888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731483942567644308}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6529111df38aeba42a147e38e0bce5c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pencilTip: {fileID: 6393859493149624402}
+  _tipSize: 15
+  _opacity: 0.2
+  _grainIntensity: 0.3
+--- !u!114 &9218896336593682732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731483942567644308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4ae3d655191884f9289d7f74183c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _brushTip: {fileID: 6393859493149624402}
+  _brushSize: 30
+  _opacity: 0.5
+  _brushTexture: {fileID: 2800000, guid: c6ee405eff8a748488b38a44f05946ff, type: 3}
 --- !u!1 &1427998163157647268
 GameObject:
   m_ObjectHideFlags: 0

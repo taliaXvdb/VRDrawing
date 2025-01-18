@@ -8,6 +8,7 @@ TagManager:
   - PaintCanvas
   - PaintCanvasLine
   - FullText
+  - Tool
   layers:
   - Default
   - TransparentFX
