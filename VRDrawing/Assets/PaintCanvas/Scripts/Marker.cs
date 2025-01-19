@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Marker : MonoBehaviour
 {
     [SerializeField] private Transform _markerTip;
     [SerializeField] private int _tipSize = 15;
-
+    [SerializeField] private InputActionAsset inputActions;
+    private InputAction _triggerAction;
     private Renderer _renderer;
     private Color[] _colors;
     private float _tipHeight;
@@ -18,6 +21,7 @@ public class Marker : MonoBehaviour
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
     private Quaternion _lastTouchRot;
+    private bool _drawing;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +30,39 @@ public class Marker : MonoBehaviour
         _tipHeight = _markerTip.localScale.y;
     }
 
+    void OnEnable()
+    {
+        var actionMap = inputActions.FindActionMap("Controller");
+        _triggerAction = actionMap.FindAction("Trigger");
+        _triggerAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        _triggerAction.Disable();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Paint();
+        // Check if the trigger button is pressed
+        if (_triggerAction.ReadValue<float>() > 0)
+        {
+            if (!_drawing)
+            {
+                // Reset states when starting a new drawing
+                _touchedLastFrame = false;
+            }
+
+            _drawing = true;
+            Paint();
+        }
+        else
+        {
+            _drawing = false;
+        }
     }
+
 
     private void Paint()
     {
@@ -119,5 +151,13 @@ public class Marker : MonoBehaviour
         _paintCanvas = null;
         _paintCanvasLine = null;
         _touchedLastFrame = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PaintCanvas"))
+        {
+            Debug.Log("Collided with " + other.gameObject.name);
+        }
     }
 }
