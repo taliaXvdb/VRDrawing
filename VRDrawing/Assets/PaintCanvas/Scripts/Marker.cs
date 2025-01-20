@@ -43,6 +43,17 @@ public class Marker : MonoBehaviour
     }
 
     // Update is called once per frame
+    // void Update()
+    // {
+    //     if (_triggerAction != null)
+    //     {
+    //         Debug.Log("Trigger value: " + _triggerAction.ReadValue<float>());
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("Trigger action is null");
+    //     }
+    // }
     void Update()
     {
         // Check if the trigger button is pressed
