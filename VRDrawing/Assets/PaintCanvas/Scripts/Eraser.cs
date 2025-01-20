@@ -2,33 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Eraser : MonoBehaviour
 {
     [SerializeField] private Transform _eraserTip;
     [SerializeField] private int _tipSize = 10; // Size of the eraser tip
     [SerializeField] private Color _backgroundColor = Color.white; // Default canvas color
-
+    [SerializeField] private InputActionAsset inputActions;
+    private InputAction _triggerAction;
     private float _tipHeight;
     private RaycastHit _touch;
     private PaintCanvas _paintCanvas;
     private Vector2 _touchPos;
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
+    private bool _erasing;
+    private bool lockZPosition = false;
+    private bool hasCollided = false; // Flag to track if collision has already happened
 
     void Start()
     {
         _tipHeight = _eraserTip.localScale.y;
     }
 
+    void OnEnable()
+    {
+        var actionMap = inputActions.FindActionMap("Controller");
+        _triggerAction = actionMap.FindAction("Trigger");
+        _triggerAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        _triggerAction.Disable();
+    }
+
     void Update()
     {
-        Erase();
+        // Lock Z position in Update() to ensure marker stays in place
+        if (lockZPosition)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -4.9959f);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+
+        // Check if the trigger button is pressed
+        if (_triggerAction.ReadValue<float>() > 0)
+        {
+            if (!_erasing)
+            {
+                // Reset states when starting a new drawing
+                _touchedLastFrame = false;
+            }
+
+            _erasing = true;
+            Erase();
+        }
+        else
+        {
+            _erasing = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PaintCanvas") && !hasCollided)
+        {
+            // Lock Z position without Rigidbody physics
+            lockZPosition = true;
+
+            hasCollided = true; // Set the flag to true to prevent further detection
+            return;
+        }
     }
 
     private void Erase()
     {
-        if (Physics.Raycast(_eraserTip.position, transform.up, out _touch, _tipHeight))
+        if (Physics.Raycast(_eraserTip.position, transform.right, out _touch, _tipHeight))
         {
             if (_touch.transform.CompareTag("PaintCanvas"))
             {

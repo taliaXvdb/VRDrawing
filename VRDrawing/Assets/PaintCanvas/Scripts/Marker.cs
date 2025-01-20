@@ -75,9 +75,6 @@ public class Marker : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PaintCanvas") && !hasCollided)
         {
-            Debug.Log("Collided with " + other.gameObject.name);
-            Debug.Log("Position before locking: " + transform.position);
-
             // Lock Z position without Rigidbody physics
             lockZPosition = true;
 
@@ -89,20 +86,10 @@ public class Marker : MonoBehaviour
 
     private void Paint()
     {
-        Debug.Log("Attempting to raycast...");
-
-        // Debug the ray direction and visualize it in the Scene view
-        Debug.DrawRay(_markerTip.position, transform.up * _tipHeight, Color.red, 1f);
-        Debug.Log("Ray direction: " + transform.up);
-
         if (Physics.Raycast(_markerTip.position, transform.forward, out _touch, _tipHeight))
         {
-            Debug.Log("Raycast hit " + _touch.transform.name);
-
             if (_touch.transform.CompareTag("PaintCanvas"))
             {
-                Debug.Log("Hit PaintCanvas");
-
                 if (_paintCanvas == null)
                 {
                     _paintCanvas = _touch.transform.GetComponent<PaintCanvas>();
@@ -130,8 +117,6 @@ public class Marker : MonoBehaviour
                     }
 
                     transform.rotation = _lastTouchRot;
-
-                    Debug.Log("Applying texture at " + _touchpos);
                     _paintCanvas.texture.Apply();
                 }
 
@@ -141,8 +126,6 @@ public class Marker : MonoBehaviour
                 return;
             }
         }
-
-        Debug.Log("No hit detected.");
         _paintCanvas = null;
         _paintCanvasLine = null;
         _touchedLastFrame = false;
