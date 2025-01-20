@@ -22,6 +22,8 @@ public class Marker : MonoBehaviour
     private bool _touchedLastFrame;
     private Quaternion _lastTouchRot;
     private bool _drawing;
+    private bool lockZPosition = false;
+    private bool hasCollided = false; // Flag to track if collision has already happened
     // Start is called before the first frame update
     void Start()
     {
@@ -42,20 +44,15 @@ public class Marker : MonoBehaviour
         _triggerAction.Disable();
     }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     if (_triggerAction != null)
-    //     {
-    //         Debug.Log("Trigger value: " + _triggerAction.ReadValue<float>());
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError("Trigger action is null");
-    //     }
-    // }
     void Update()
     {
+        // Lock Z position in Update() to ensure marker stays in place
+        if (lockZPosition)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -4.9385f);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+
         // Check if the trigger button is pressed
         if (_triggerAction.ReadValue<float>() > 0)
         {
@@ -74,24 +71,49 @@ public class Marker : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PaintCanvas") && !hasCollided)
+        {
+            Debug.Log("Collided with " + other.gameObject.name);
+            Debug.Log("Position before locking: " + transform.position);
+
+            // Lock Z position without Rigidbody physics
+            lockZPosition = true;
+
+            hasCollided = true; // Set the flag to true to prevent further detection
+            return;
+        }
+    }
+
 
     private void Paint()
     {
-        if (Physics.Raycast(_markerTip.position, transform.up, out _touch, _tipHeight))
+        Debug.Log("Attempting to raycast...");
+
+        // Debug the ray direction and visualize it in the Scene view
+        Debug.DrawRay(_markerTip.position, transform.up * _tipHeight, Color.red, 1f);
+        Debug.Log("Ray direction: " + transform.up);
+
+        if (Physics.Raycast(_markerTip.position, transform.forward, out _touch, _tipHeight))
         {
+            Debug.Log("Raycast hit " + _touch.transform.name);
+
             if (_touch.transform.CompareTag("PaintCanvas"))
             {
+                Debug.Log("Hit PaintCanvas");
+
                 if (_paintCanvas == null)
                 {
                     _paintCanvas = _touch.transform.GetComponent<PaintCanvas>();
                 }
 
-                _touchpos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
+                _touchpos = new Vector2(_touch.textureCoord.x * _paintCanvas.texture.width, _touch.textureCoord.y * _paintCanvas.texture.height);
 
-                var x = (int)(_touchpos.x * _paintCanvas.textureSize.x - _tipSize / 2);
-                var y = (int)(_touchpos.y * _paintCanvas.textureSize.y - _tipSize / 2);
+                var x = (int)(_touchpos.x - _tipSize / 2);
+                var y = (int)(_touchpos.y - _tipSize / 2);
 
-                if (y < 0 || y >= _paintCanvas.textureSize.y || x < 0 || x >= _paintCanvas.textureSize.x)
+                if (y < 0 || y >= _paintCanvas.texture.height || x < 0 || x >= _paintCanvas.texture.width)
                 {
                     return;
                 }
@@ -109,47 +131,8 @@ public class Marker : MonoBehaviour
 
                     transform.rotation = _lastTouchRot;
 
+                    Debug.Log("Applying texture at " + _touchpos);
                     _paintCanvas.texture.Apply();
-
-                }
-
-                _lastTouchPos = new Vector2(x, y);
-                _lastTouchRot = transform.rotation;
-                _touchedLastFrame = true;
-                return;
-            }
-            else if (_touch.transform.CompareTag("PaintCanvasLine"))
-            {
-                if (_paintCanvasLine == null)
-                {
-                    _paintCanvasLine = _touch.transform.GetComponent<PaintCanvasLine>();
-                }
-
-                _touchpos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
-
-                var x = (int)(_touchpos.x * _paintCanvasLine.textureSize.x - _tipSize / 2);
-                var y = (int)(_touchpos.y * _paintCanvasLine.textureSize.y - _tipSize / 2);
-
-                if (y < 0 || y >= _paintCanvasLine.textureSize.y || x < 0 || x >= _paintCanvasLine.textureSize.x)
-                {
-                    return;
-                }
-
-                if (_touchedLastFrame)
-                {
-                    _paintCanvasLine.texture.SetPixels(x, y, _tipSize, _tipSize, _colors);
-
-                    for (float f = 0.01f; f < 1.0f; f += 0.01f)
-                    {
-                        var lerpX = (int)Mathf.Lerp(_lastTouchPos.x, x, f);
-                        var lerpY = (int)Mathf.Lerp(_lastTouchPos.y, y, f);
-                        _paintCanvasLine.texture.SetPixels(lerpX, lerpY, _tipSize, _tipSize, _colors);
-                    }
-
-                    transform.rotation = _lastTouchRot;
-
-                    _paintCanvasLine.texture.Apply();
-
                 }
 
                 _lastTouchPos = new Vector2(x, y);
@@ -159,16 +142,11 @@ public class Marker : MonoBehaviour
             }
         }
 
+        Debug.Log("No hit detected.");
         _paintCanvas = null;
         _paintCanvasLine = null;
         _touchedLastFrame = false;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("PaintCanvas"))
-        {
-            Debug.Log("Collided with " + other.gameObject.name);
-        }
-    }
+
 }

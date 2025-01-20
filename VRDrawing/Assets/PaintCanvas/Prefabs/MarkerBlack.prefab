@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3613892505327994939}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1416}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147,9 +147,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2515399479041753218}
   - component: {fileID: 4126824641075559668}
-  - component: {fileID: 2864606870459293085}
-  - component: {fileID: 7591508139762971049}
   - component: {fileID: 2282850920117413350}
+  - component: {fileID: 793979913773008836}
+  - component: {fileID: 2950363390080218537}
   m_Layer: 0
   m_Name: MarkerBlack
   m_TagString: Tool
@@ -166,13 +166,13 @@ Transform:
   m_GameObject: {fileID: 6965529485153473891}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7236, y: 0.6546, z: -3.1428}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1166656061803092978}
-  - {fileID: 8746997461193171469}
   - {fileID: 6225570540608238484}
+  - {fileID: 8746997461193171469}
+  - {fileID: 1166656061803092978}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4126824641075559668
@@ -194,9 +194,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.03, y: 0.04, z: 0.28}
-  m_Center: {x: 0, y: 0.01, z: -0.03}
---- !u!54 &2864606870459293085
+  m_Size: {x: 0.035, y: 0.04, z: 0.27}
+  m_Center: {x: 0, y: 0.008, z: -0.035}
+--- !u!114 &2282850920117413350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6965529485153473891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fb67882cfe64c42aa427df0497178f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _markerTip: {fileID: 6225570540608238484}
+  _tipSize: 15
+  inputActions: {fileID: -944628639613478452, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
+--- !u!54 &793979913773008836
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,7 +238,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7591508139762971049
+--- !u!114 &2950363390080218537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,7 +318,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -320,7 +335,7 @@ MonoBehaviour:
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -344,21 +359,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  m_FarAttachMode: 0
---- !u!114 &2282850920117413350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6965529485153473891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4fb67882cfe64c42aa427df0497178f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _markerTip: {fileID: 6225570540608238484}
-  _tipSize: 15
+  m_FarAttachMode: 1
 --- !u!1 &8254937565564894451
 GameObject:
   m_ObjectHideFlags: 0
