@@ -51,7 +51,7 @@ public class Pencil : MonoBehaviour
         }
 
         // Check if the trigger button is pressed
-        if (_triggerAction.ReadValue<float>() > 0)
+        if (_triggerAction.ReadValue<float>() > 0 && hasCollided)
         {
             if (!_drawing)
             {
@@ -155,5 +155,10 @@ public class Pencil : MonoBehaviour
             result[i] = Color.Lerp(baseColors[i], newColors[i], newColors[i].a);
         }
         return result;
+    }
+
+    public void SetColor(Material material)
+    {
+        _renderer.material = material;
     }
 }

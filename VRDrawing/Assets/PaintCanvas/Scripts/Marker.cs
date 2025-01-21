@@ -21,8 +21,9 @@ public class Marker : MonoBehaviour
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
     private Quaternion _lastTouchRot;
-    private bool _drawing;
+    public bool _drawing;
     private bool lockZPosition = false;
+    private bool lockYPosition = false;
     private bool hasCollided = false; // Flag to track if collision has already happened
     // Start is called before the first frame update
     void Start()
@@ -54,7 +55,7 @@ public class Marker : MonoBehaviour
         }
 
         // Check if the trigger button is pressed
-        if (_triggerAction.ReadValue<float>() > 0)
+        if (_triggerAction.ReadValue<float>() > 0 && hasCollided)
         {
             if (!_drawing)
             {
@@ -64,6 +65,11 @@ public class Marker : MonoBehaviour
 
             _drawing = true;
             Paint();
+        }
+        else if (_triggerAction.ReadValue<float>() == 0 && hasCollided)
+        {
+            // Lock Y position without Rigidbody physics
+            lockYPosition = true;
         }
         else
         {
@@ -131,5 +137,9 @@ public class Marker : MonoBehaviour
         _touchedLastFrame = false;
     }
 
-
+    public void SetColor(Material material)
+    {
+        _renderer.material = material;
+        _colors = Enumerable.Repeat(material.color, _tipSize * _tipSize).ToArray();
+    }
 }

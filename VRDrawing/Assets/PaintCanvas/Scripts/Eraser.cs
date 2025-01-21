@@ -48,7 +48,7 @@ public class Eraser : MonoBehaviour
         }
 
         // Check if the trigger button is pressed
-        if (_triggerAction.ReadValue<float>() > 0)
+        if (_triggerAction.ReadValue<float>() > 0 && hasCollided)
         {
             if (!_erasing)
             {

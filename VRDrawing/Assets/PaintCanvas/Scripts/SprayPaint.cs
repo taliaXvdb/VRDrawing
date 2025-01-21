@@ -53,7 +53,7 @@ public class SprayPaint : MonoBehaviour
         }
 
         // Check if the trigger button is pressed
-        if (_triggerAction.ReadValue<float>() > 0)
+        if (_triggerAction.ReadValue<float>() > 0 && hasCollided)
         {
             if (!_drawing)
             {
@@ -137,6 +137,12 @@ public class SprayPaint : MonoBehaviour
 
         _paintCanvas = null;
         _touchedLastFrame = false;
+    }
+
+    public void SetColor(Material material)
+    {
+        _renderer.material = material;
+        _colors = Enumerable.Repeat(material.color, _tipSize * _tipSize).ToArray();
     }
 }
 
