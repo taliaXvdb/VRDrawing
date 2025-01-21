@@ -359,7 +359,7 @@ MonoBehaviour:
   _eraserTip: {fileID: 4434405233426161064}
   _tipSize: 10
   _backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  inputActions: {fileID: 0}
+  inputActions: {fileID: -944628639613478452, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
 --- !u!1001 &1579996523122835099
 PrefabInstance:
   m_ObjectHideFlags: 0

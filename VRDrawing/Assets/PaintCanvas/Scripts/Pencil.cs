@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Pencil : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class Pencil : MonoBehaviour
     [SerializeField] private int _tipSize = 15;
     [SerializeField] private float _opacity = 0.2f; // Adjust for semi-transparent strokes
     [SerializeField] private float _grainIntensity = 0.3f; // Intensity of the grain effect
-
+    [SerializeField] private InputActionAsset inputActions;
+    private InputAction _triggerAction;
     private Renderer _renderer;
     private Color[] _colors;
     private float _tipHeight;
@@ -18,22 +20,71 @@ public class Pencil : MonoBehaviour
     private Vector2 _touchpos;
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
-
+    private bool _drawing;
+    private bool lockZPosition = false;
+    private bool hasCollided = false; // Flag to track if collision has already happened
+    // Start is called before the first frame update
     void Start()
     {
         _renderer = _pencilTip.GetComponent<Renderer>();
         _colors = GenerateGrainyColors();
         _tipHeight = _pencilTip.localScale.y;
     }
+    void OnEnable()
+    {
+        var actionMap = inputActions.FindActionMap("Controller");
+        _triggerAction = actionMap.FindAction("Trigger");
+        _triggerAction.Enable();
+    }
 
+    void OnDisable()
+    {
+        _triggerAction.Disable();
+    }
     void Update()
     {
-        Draw();
+        // Lock Z position in Update() to ensure marker stays in place
+        if (lockZPosition)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -4.8553f);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180, transform.rotation.eulerAngles.z);
+        }
+
+        // Check if the trigger button is pressed
+        if (_triggerAction.ReadValue<float>() > 0)
+        {
+            if (!_drawing)
+            {
+                // Reset states when starting a new drawing
+                _touchedLastFrame = false;
+            }
+
+            _drawing = true;
+            Draw();
+        }
+        else
+        {
+            _drawing = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PaintCanvas") && !hasCollided)
+        {
+            Debug.Log("Collided with PaintCanvas");
+            // Lock Z position without Rigidbody physics
+            lockZPosition = true;
+
+            hasCollided = true; // Set the flag to true to prevent further detection
+            return;
+        }
     }
 
     private void Draw()
     {
-        if (Physics.Raycast(_pencilTip.position, transform.up, out _touch, _tipHeight))
+        Debug.Log("Drawing");
+        if (Physics.Raycast(_pencilTip.position, transform.forward, out _touch, _tipHeight))
         {
             if (_touch.transform.CompareTag("PaintCanvas"))
             {

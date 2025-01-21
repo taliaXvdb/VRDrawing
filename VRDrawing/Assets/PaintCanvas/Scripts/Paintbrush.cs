@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Paintbrush : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class Paintbrush : MonoBehaviour
     [SerializeField] private int _brushSize = 30; // Larger size for brush strokes
     [SerializeField] private float _opacity = 0.5f; // Semi-transparency for blending
     [SerializeField] private Texture2D _brushTexture; // Optional texture for brush shape
-
+    [SerializeField] private InputActionAsset inputActions;
+    private InputAction _triggerAction;
     private Renderer _renderer;
     private float _brushHeight;
     private RaycastHit _touch;
@@ -17,21 +19,64 @@ public class Paintbrush : MonoBehaviour
     private Vector2 _touchPos;
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
-
+    private bool _drawing;
+    private bool lockZPosition = false;
+    private bool hasCollided = false; // Flag to track if collision has already happened
     void Start()
     {
         _renderer = _brushTip.GetComponent<Renderer>();
         _brushHeight = _brushTip.localScale.y;
     }
-
-    void Update()
+    void OnEnable()
     {
-        Paint();
+        var actionMap = inputActions.FindActionMap("Controller");
+        _triggerAction = actionMap.FindAction("Trigger");
+        _triggerAction.Enable();
     }
 
+    void OnDisable()
+    {
+        _triggerAction.Disable();
+    }
+    void Update()
+    {
+        // Lock Z position in Update() to ensure marker stays in place
+        if (lockZPosition)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -5.0445f);
+        }
+
+        // Check if the trigger button is pressed
+        if (_triggerAction.ReadValue<float>() > 0)
+        {
+            if (!_drawing)
+            {
+                // Reset states when starting a new drawing
+                _touchedLastFrame = false;
+            }
+
+            _drawing = true;
+            Paint();
+        }
+        else
+        {
+            _drawing = false;
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PaintCanvas") && !hasCollided)
+        {
+            // Lock Z position without Rigidbody physics
+            lockZPosition = true;
+
+            hasCollided = true; // Set the flag to true to prevent further detection
+            return;
+        }
+    }
     private void Paint()
     {
-        if (Physics.Raycast(_brushTip.position, transform.up, out _touch, _brushHeight))
+        if (Physics.Raycast(_brushTip.position, -transform.up, out _touch, _brushHeight))
         {
             if (_touch.transform.CompareTag("PaintCanvas"))
             {

@@ -50,7 +50,7 @@ public class Marker : MonoBehaviour
         if (lockZPosition)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -4.9385f);
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180, transform.rotation.eulerAngles.z);
         }
 
         // Check if the trigger button is pressed

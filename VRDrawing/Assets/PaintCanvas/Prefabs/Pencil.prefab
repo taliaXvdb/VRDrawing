@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 6298026819207063052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.18359}
+  m_LocalPosition: {x: 0, y: 0, z: 0.18368}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -134,8 +134,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.04
+  m_Center: {x: 0, y: 0, z: 0.46}
 --- !u!1 &7158814944464872155
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,10 +145,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 241140796429821471}
-  - component: {fileID: 9013343259709044481}
-  - component: {fileID: 6171049955612661789}
   - component: {fileID: 2758299958657265898}
   - component: {fileID: 2052471455981897965}
+  - component: {fileID: 9013343259709044481}
+  - component: {fileID: 6171049955612661789}
   m_Layer: 0
   m_Name: Pencil
   m_TagString: Tool
@@ -165,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 7158814944464872155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.888, y: 0.646, z: -3.143}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -174,6 +174,44 @@ Transform:
   - {fileID: 9065178193627833256}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2758299958657265898
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7158814944464872155}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.017, y: 0.019, z: 0.37}
+  m_Center: {x: 0, y: 0, z: 0.004}
+--- !u!114 &2052471455981897965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7158814944464872155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6529111df38aeba42a147e38e0bce5c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pencilTip: {fileID: 9065178193627833256}
+  _tipSize: 15
+  _opacity: 0.2
+  _grainIntensity: 0.3
+  inputActions: {fileID: -944628639613478452, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
 --- !u!54 &9013343259709044481
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -281,7 +319,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -322,44 +360,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  m_FarAttachMode: 0
---- !u!65 &2758299958657265898
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158814944464872155}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.015, y: 0.015, z: 0.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2052471455981897965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158814944464872155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6529111df38aeba42a147e38e0bce5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pencilTip: {fileID: 9065178193627833256}
-  _tipSize: 15
-  _opacity: 0.2
-  _grainIntensity: 0.3
+  m_FarAttachMode: 1
 --- !u!1 &8231531724066796059
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,5 +464,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.01214382, y: 0.014022474, z: 0.28460383}
+  m_Size: {x: 0.013, y: 0.015, z: 0.28460383}
   m_Center: {x: 0, y: 0, z: 0.0028369352}
