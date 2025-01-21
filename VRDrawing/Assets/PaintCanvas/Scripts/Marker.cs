@@ -63,16 +63,15 @@ public class Marker : MonoBehaviour
                 _touchedLastFrame = false;
             }
 
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             _drawing = true;
             Paint();
         }
         else if (_triggerAction.ReadValue<float>() == 0 && hasCollided)
         {
-            // Lock Y position without Rigidbody physics
-            lockYPosition = true;
-        }
-        else
-        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            GetComponent<Rigidbody>().useGravity = false;
             _drawing = false;
         }
     }
