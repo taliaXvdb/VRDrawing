@@ -8,12 +8,15 @@ public class Eraser : MonoBehaviour
 {
     [SerializeField] private Transform _eraserTip;
     [SerializeField] private int _tipSize = 10; // Size of the eraser tip
-    [SerializeField] private Color _backgroundColor = Color.white; // Default canvas color
     [SerializeField] private InputActionAsset inputActions;
+    private Color _backgroundColor = Color.white; // Default canvas color
+    private float smoothingFactor = 0.8f; // Adjust to control smoothness
+    private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
     private float _tipHeight;
     private RaycastHit _touch;
     private PaintCanvas _paintCanvas;
+    private Vector3 _smoothedPosition;
     private Vector2 _touchPos;
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
@@ -47,6 +50,21 @@ public class Eraser : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
 
+        if (_erasing)
+        {
+            Vector3 rawPosition = transform.position;
+            _smoothedPosition = Vector3.Lerp(_smoothedPosition, rawPosition, smoothingFactor);
+
+            // Check for jitter
+            if (Vector3.Distance(rawPosition, _smoothedPosition) < jitterThreshold)
+            {
+                _smoothedPosition = rawPosition; // Ignore jitter by snapping to the actual position
+            }
+
+            // Update transform to use the smoothed position
+            transform.position = _smoothedPosition;
+        }
+
         // Check if the trigger button is pressed
         if (_triggerAction.ReadValue<float>() > 0 && hasCollided)
         {
@@ -57,6 +75,7 @@ public class Eraser : MonoBehaviour
             }
 
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             _erasing = true;
             Erase();
         }

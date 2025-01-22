@@ -6452,13 +6452,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 563940027}
     m_Modifications:
+    - target: {fileID: 2282850920117413350, guid: b139a54f76c542c41b502dba73a4fdb5, type: 3}
+      propertyPath: jitterThreshold
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282850920117413350, guid: b139a54f76c542c41b502dba73a4fdb5, type: 3}
+      propertyPath: smoothingFactor
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2515399479041753218, guid: b139a54f76c542c41b502dba73a4fdb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.7236
       objectReference: {fileID: 0}
     - target: {fileID: 2515399479041753218, guid: b139a54f76c542c41b502dba73a4fdb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6546
+      value: 0.6562
       objectReference: {fileID: 0}
     - target: {fileID: 2515399479041753218, guid: b139a54f76c542c41b502dba73a4fdb5, type: 3}
       propertyPath: m_LocalPosition.z

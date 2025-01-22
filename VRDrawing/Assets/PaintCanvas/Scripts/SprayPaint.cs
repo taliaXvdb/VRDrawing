@@ -9,12 +9,15 @@ public class SprayPaint : MonoBehaviour
     [SerializeField] private Transform _markerTip;
     [SerializeField] private int _tipSize = 25;
     [SerializeField] private InputActionAsset inputActions;
+    private float smoothingFactor = 0.8f; // Adjust to control smoothness
+    private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
     private Renderer _renderer;
     private Color[] _colors;
     private float _tipHeight;
     private RaycastHit _touch;
     private PaintCanvas _paintCanvas;
+    private Vector3 _smoothedPosition;
     private PaintCanvasLine _paintCanvasLine;
     private Vector2 _touchpos;
     private Vector2 _lastTouchPos;
@@ -52,6 +55,21 @@ public class SprayPaint : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
+        if (_drawing)
+        {
+            Vector3 rawPosition = transform.position;
+            _smoothedPosition = Vector3.Lerp(_smoothedPosition, rawPosition, smoothingFactor);
+
+            // Check for jitter
+            if (Vector3.Distance(rawPosition, _smoothedPosition) < jitterThreshold)
+            {
+                _smoothedPosition = rawPosition; // Ignore jitter by snapping to the actual position
+            }
+
+            // Update transform to use the smoothed position
+            transform.position = _smoothedPosition;
+        }
+
         // Check if the trigger button is pressed
         if (_triggerAction.ReadValue<float>() > 0 && hasCollided)
         {
@@ -62,6 +80,7 @@ public class SprayPaint : MonoBehaviour
             }
 
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             _drawing = true;
             Paint();
         }

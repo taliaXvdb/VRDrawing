@@ -8,15 +8,18 @@ public class Pencil : MonoBehaviour
 {
     [SerializeField] private Transform _pencilTip;
     [SerializeField] private int _tipSize = 15;
-    [SerializeField] private float _opacity = 0.2f; // Adjust for semi-transparent strokes
-    [SerializeField] private float _grainIntensity = 0.3f; // Intensity of the grain effect
     [SerializeField] private InputActionAsset inputActions;
+    private float _opacity = 0.2f; // Adjust for semi-transparent strokes
+    private float _grainIntensity = 0.3f; // Intensity of the grain effect
+    private float smoothingFactor = 0.8f; // Adjust to control smoothness
+    private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
     private Renderer _renderer;
     private Color[] _colors;
     private float _tipHeight;
     private RaycastHit _touch;
     private PaintCanvas _paintCanvas;
+    private Vector3 _smoothedPosition;
     private Vector2 _touchpos;
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
@@ -50,6 +53,21 @@ public class Pencil : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180, transform.rotation.eulerAngles.z);
         }
 
+        if (_drawing)
+        {
+            Vector3 rawPosition = transform.position;
+            _smoothedPosition = Vector3.Lerp(_smoothedPosition, rawPosition, smoothingFactor);
+
+            // Check for jitter
+            if (Vector3.Distance(rawPosition, _smoothedPosition) < jitterThreshold)
+            {
+                _smoothedPosition = rawPosition; // Ignore jitter by snapping to the actual position
+            }
+
+            // Update transform to use the smoothed position
+            transform.position = _smoothedPosition;
+        }
+
         // Check if the trigger button is pressed
         if (_triggerAction.ReadValue<float>() > 0 && hasCollided)
         {
@@ -60,6 +78,7 @@ public class Pencil : MonoBehaviour
             }
 
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             _drawing = true;
             Draw();
         }

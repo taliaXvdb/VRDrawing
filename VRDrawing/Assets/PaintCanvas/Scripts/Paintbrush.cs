@@ -8,14 +8,17 @@ public class Paintbrush : MonoBehaviour
 {
     [SerializeField] private Transform _brushTip;
     [SerializeField] private int _brushSize = 30; // Larger size for brush strokes
-    [SerializeField] private float _opacity = 0.5f; // Semi-transparency for blending
-    [SerializeField] private Texture2D _brushTexture; // Optional texture for brush shape
     [SerializeField] private InputActionAsset inputActions;
+    private float _opacity = 0.5f; // Semi-transparency for blending
+    private Texture2D _brushTexture; // Optional texture for brush shape
+    private float smoothingFactor = 0.8f; // Adjust to control smoothness
+    private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
     private Renderer _renderer;
     private float _brushHeight;
     private RaycastHit _touch;
     private PaintCanvas _paintCanvas;
+    private Vector3 _smoothedPosition;
     private Vector2 _touchPos;
     private Vector2 _lastTouchPos;
     private bool _touchedLastFrame;
@@ -46,6 +49,21 @@ public class Paintbrush : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, -5.0445f);
         }
 
+        if (_drawing)
+        {
+            Vector3 rawPosition = transform.position;
+            _smoothedPosition = Vector3.Lerp(_smoothedPosition, rawPosition, smoothingFactor);
+
+            // Check for jitter
+            if (Vector3.Distance(rawPosition, _smoothedPosition) < jitterThreshold)
+            {
+                _smoothedPosition = rawPosition; // Ignore jitter by snapping to the actual position
+            }
+
+            // Update transform to use the smoothed position
+            transform.position = _smoothedPosition;
+        }
+
         // Check if the trigger button is pressed
         if (_triggerAction.ReadValue<float>() > 0 && hasCollided)
         {
@@ -56,6 +74,7 @@ public class Paintbrush : MonoBehaviour
             }
 
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             _drawing = true;
             Paint();
         }
