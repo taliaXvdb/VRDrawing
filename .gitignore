@@ -5,3 +5,7 @@ VRDrawing/Logs/
 
 # Ignore the Temp folder inside
 VRDrawing/Temp/
+
+VRDrawing/Builds/
+
+VRDrawing/Assets/SiameseModel/SiameseModel.onnx

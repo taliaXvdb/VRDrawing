@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flexalon.Samples.Editor", "Flexalon.Samples.Editor.csproj", "{159F5603-73A7-98A6-20DB-755FD0202CD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TensorFlowLite", "TensorFlowLite.csproj", "{14E008F3-33A7-4361-A9C4-E1B1CA5C506D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flexalon.Samples", "Flexalon.Samples.csproj", "{BE69CA52-556B-2452-24E0-971416A20FBA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator", "Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator.csproj", "{C3BB2839-EA55-01D8-C238-19C2E9F3FEDF}"
@@ -43,6 +45,10 @@ Global
 		{159F5603-73A7-98A6-20DB-755FD0202CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{159F5603-73A7-98A6-20DB-755FD0202CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{159F5603-73A7-98A6-20DB-755FD0202CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14E008F3-33A7-4361-A9C4-E1B1CA5C506D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14E008F3-33A7-4361-A9C4-E1B1CA5C506D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14E008F3-33A7-4361-A9C4-E1B1CA5C506D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14E008F3-33A7-4361-A9C4-E1B1CA5C506D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE69CA52-556B-2452-24E0-971416A20FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE69CA52-556B-2452-24E0-971416A20FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE69CA52-556B-2452-24E0-971416A20FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
