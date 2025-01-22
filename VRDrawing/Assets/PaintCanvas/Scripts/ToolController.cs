@@ -91,6 +91,7 @@ public class ToolController : MonoBehaviour
 
     public void ChangeColor(string color)
     {
+        Debug.Log($"Changing color to: {color}");
         if (lastSelectedTool.name == "MarkerBlack")
         {
             Marker marker = lastSelectedTool.GetComponent<Marker>();
