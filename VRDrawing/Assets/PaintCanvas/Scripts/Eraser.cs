@@ -7,9 +7,9 @@ using UnityEngine.InputSystem;
 public class Eraser : MonoBehaviour
 {
     [SerializeField] private Transform _eraserTip;
-    [SerializeField] private int _tipSize = 10; // Size of the eraser tip
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private ToolController _toolController;
+    private int _tipSize = 15; // Size of the eraser tip
     private Color _backgroundColor = Color.white; // Default canvas color
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
     private float jitterThreshold = 0.08f; // Minimum movement to consider
@@ -165,6 +165,11 @@ public class Eraser : MonoBehaviour
         _paintCanvas.texture.SetPixels(x, y, _tipSize, _tipSize, eraseColors);
     }
 
+    public void SetTipSize(int size)
+    {
+        _tipSize = size;
+    }
+
     private void ResetTool()
     {
         transform.position = _originalPosition;
@@ -173,7 +178,7 @@ public class Eraser : MonoBehaviour
         _erasing = false;
         lockZPosition = false;
         hasCollided = false;
-                _toolController.ResetCurrentTool();
+        _toolController.ResetCurrentTool();
 
     }
 }

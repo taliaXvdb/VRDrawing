@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ToolController : MonoBehaviour
 {
     [SerializeField] private Transform controller; // Assign your VR controller
     [SerializeField] private string targetTag = "Tool"; // Set your desired tag in the Inspector
     [SerializeField] private Canvas _colorpickerCanvas;
+    [SerializeField] private Canvas _pensizeCanvas;
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private Material _matRed;
     [SerializeField] private Material _matOrange;
@@ -19,6 +21,8 @@ public class ToolController : MonoBehaviour
     [SerializeField] private Material _matBlue;
     [SerializeField] private Material _matMagenta;
     [SerializeField] private Material _matBlack;
+    [SerializeField] private Slider _penSizeSlider;
+    [SerializeField] private TMP_Text _penSizeText;
     private InputAction _gripAction;
     private GameObject lastHoveredTool;
     private GameObject lastSelectedTool;
@@ -73,6 +77,7 @@ public class ToolController : MonoBehaviour
                     {
                         lastSelectedTool = lastHoveredTool;
                         Debug.Log($"Selected: {lastSelectedTool.name}");
+                        _pensizeCanvas.gameObject.SetActive(true);
                         if (lastSelectedTool.name != "Eraser")
                         {
                             _colorpickerCanvas.gameObject.SetActive(true);
@@ -97,11 +102,12 @@ public class ToolController : MonoBehaviour
         lastSelectedTool = null;
         _toolSelected = false;
         _colorpickerCanvas.gameObject.SetActive(false);
+        _penSizeSlider.value = 15;
+        _pensizeCanvas.gameObject.SetActive(false);
     }
 
     public void ChangeColor(string color)
     {
-        Debug.Log($"Changing color to: {color}");
         if (lastSelectedTool.name == "MarkerBlack")
         {
             Marker marker = lastSelectedTool.GetComponent<Marker>();
@@ -246,5 +252,41 @@ public class ToolController : MonoBehaviour
                 spray.SetColor(_matBlack);
             }
         }
+    }
+
+    public void ChangePenSize()
+    {
+        _penSizeText.text = _penSizeSlider.value.ToString();
+
+        if (lastSelectedTool.name == "MarkerBlack")
+        {
+            Marker marker = lastSelectedTool.GetComponent<Marker>();
+            marker.SetTipSize((int)_penSizeSlider.value);
+        }
+        else if (lastSelectedTool.name == "Brush")
+        {
+            Paintbrush brush = lastSelectedTool.GetComponent<Paintbrush>();
+            brush.SetTipSize((int)_penSizeSlider.value);
+        }
+        else if (lastSelectedTool.name == "Pencil")
+        {
+            Pencil pencil = lastSelectedTool.GetComponent<Pencil>();
+            pencil.SetTipSize((int)_penSizeSlider.value);
+        }
+        else if (lastSelectedTool.name == "Spray Paint")
+        {
+            SprayPaint spray = lastSelectedTool.GetComponent<SprayPaint>();
+            spray.SetTipSize((int)_penSizeSlider.value);
+        }
+        else if (lastSelectedTool.name == "Eraser")
+        {
+            Eraser eraser = lastSelectedTool.GetComponent<Eraser>();
+            eraser.SetTipSize((int)_penSizeSlider.value);
+        }
+        else
+        {
+            return;
+        }
+
     }
 }

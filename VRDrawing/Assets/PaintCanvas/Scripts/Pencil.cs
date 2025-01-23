@@ -7,9 +7,9 @@ using UnityEngine.InputSystem;
 public class Pencil : MonoBehaviour
 {
     [SerializeField] private Transform _pencilTip;
-    [SerializeField] private int _tipSize = 15;
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private ToolController _toolController;
+    private int _tipSize = 15;
     private float _opacity = 0.2f; // Adjust for semi-transparent strokes
     private float _grainIntensity = 0.3f; // Intensity of the grain effect
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
@@ -198,6 +198,11 @@ public class Pencil : MonoBehaviour
     public void SetColor(Material material)
     {
         _renderer.material = material;
+    }
+
+    public void SetTipSize(int size)
+    {
+        _tipSize = size;
     }
 
     private void ResetTool()

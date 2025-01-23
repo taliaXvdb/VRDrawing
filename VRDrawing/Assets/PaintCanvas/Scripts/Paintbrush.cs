@@ -7,9 +7,9 @@ using UnityEngine.InputSystem;
 public class Paintbrush : MonoBehaviour
 {
     [SerializeField] private Transform _brushTip;
-    [SerializeField] private int _brushSize = 30; // Larger size for brush strokes
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private ToolController _toolController;
+    private int _brushSize = 15; // Larger size for brush strokes
     private float _opacity = 0.5f; // Semi-transparency for blending
     private Texture2D _brushTexture; // Optional texture for brush shape
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
@@ -209,6 +209,11 @@ public class Paintbrush : MonoBehaviour
     public void SetColor(Material material)
     {
         _renderer.material = material;
+    }
+
+    public void SetTipSize(int size)
+    {
+        _brushSize = size;
     }
 
     private void ResetTool()

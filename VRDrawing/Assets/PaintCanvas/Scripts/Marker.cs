@@ -9,9 +9,9 @@ using UnityEngine.Rendering;
 public class Marker : MonoBehaviour
 {
     [SerializeField] private Transform _markerTip;
-    [SerializeField] private int _tipSize = 15;
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private ToolController _toolController;
+    private int _tipSize = 15;
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
     private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
@@ -175,6 +175,11 @@ public class Marker : MonoBehaviour
     {
         _renderer.material = material;
         _colors = Enumerable.Repeat(material.color, _tipSize * _tipSize).ToArray();
+    }
+    public void SetTipSize(int size)
+    {
+        _tipSize = size;
+        _colors = Enumerable.Repeat(_renderer.material.color, _tipSize * _tipSize).ToArray();
     }
 
     private void ResetTool()
