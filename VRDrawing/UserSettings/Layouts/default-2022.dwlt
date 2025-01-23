@@ -272,8 +272,8 @@ MonoBehaviour:
     y: 0
     width: 1278
     height: 642
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -595,7 +595,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Prefabs/UI
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -603,16 +603,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\talia\VRDrawing\VRDrawing
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 548b0000
-    m_LastClickedID: 35668
-    m_ExpandedIDs: 00000000548b0000568b0000588b00005a8b00005c8b00005e8b0000608b0000628b0000648b0000668b0000688b00006a8b00006c8b00006e8b0000708b0000728b0000748b0000768b000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 259}
+    m_SelectedIDs: 688c0000
+    m_LastClickedID: 35944
+    m_ExpandedIDs: 000000007c8900007e89000080890000828900008489000086890000888900008a8900008c8900008e89000090890000928900009489000096890000988900009a8900009c8900009e890000fe8b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -640,7 +640,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000548b0000568b0000588b00005a8b00005c8b00005e8b0000608b0000628b0000648b0000668b0000688b00006a8b00006c8b00006e8b0000708b0000728b0000748b0000768b0000
+    m_ExpandedIDs: 000000007c8900007e89000080890000828900008489000086890000888900008a8900008c8900008e89000090890000928900009489000096890000988900009a8900009c8900009e890000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -782,7 +782,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: b6f7ffff3cfaffff48faffff0afbffff167e0000f87e0000
+      m_ExpandedIDs: 0afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1175,9 +1175,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.5965625, y: 0.34505242, z: -5.4980006}
+    m_Target: {x: 0.742811, y: 0.385836, z: -4.450047}
     speed: 2
-    m_Value: {x: -0.5965625, y: 0.34505242, z: -5.4980006}
+    m_Value: {x: 0.742811, y: 0.385836, z: -4.450047}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1227,9 +1227,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.015976364, y: 0.9722204, z: -0.22282757, w: 0.069857314}
   m_Size:
-    m_Target: 1.7972562
+    m_Target: 1.2531319
     speed: 2
-    m_Value: 1.7972562
+    m_Value: 1.2531319
   m_Ortho:
     m_Target: 0
     speed: 2

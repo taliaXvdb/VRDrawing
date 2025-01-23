@@ -5589,6 +5589,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 563940027}
     m_Modifications:
+    - target: {fileID: 1201765661380040944, guid: 5f63f8d14109ad045b3dc506563d7282, type: 3}
+      propertyPath: _toolController
+      value: 
+      objectReference: {fileID: 1073275799}
     - target: {fileID: 3229235566492515189, guid: 5f63f8d14109ad045b3dc506563d7282, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.7314
@@ -6321,6 +6325,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2052471455981897965, guid: f0fbed4d88af5254ebafa5bb52fa8d35, type: 3}
+      propertyPath: _toolController
+      value: 
+      objectReference: {fileID: 1073275799}
     - target: {fileID: 7158814944464872155, guid: f0fbed4d88af5254ebafa5bb52fa8d35, type: 3}
       propertyPath: m_Name
       value: Pencil
@@ -6382,6 +6390,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6765406902448918931, guid: 7fbf6f5f473c46344b9f036d2b2401f6, type: 3}
+      propertyPath: _toolController
+      value: 
+      objectReference: {fileID: 1073275799}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6435,6 +6447,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4752396312328690967, guid: 916c60aababd44641a8f98b33769cde2, type: 3}
+      propertyPath: _toolController
+      value: 
+      objectReference: {fileID: 1073275799}
     - target: {fileID: 7961785765054361857, guid: 916c60aababd44641a8f98b33769cde2, type: 3}
       propertyPath: m_Name
       value: Eraser
@@ -6452,6 +6468,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 563940027}
     m_Modifications:
+    - target: {fileID: 2282850920117413350, guid: b139a54f76c542c41b502dba73a4fdb5, type: 3}
+      propertyPath: _toolController
+      value: 
+      objectReference: {fileID: 1073275799}
     - target: {fileID: 2282850920117413350, guid: b139a54f76c542c41b502dba73a4fdb5, type: 3}
       propertyPath: jitterThreshold
       value: 0.05

@@ -9,10 +9,12 @@ public class Eraser : MonoBehaviour
     [SerializeField] private Transform _eraserTip;
     [SerializeField] private int _tipSize = 10; // Size of the eraser tip
     [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private ToolController _toolController;
     private Color _backgroundColor = Color.white; // Default canvas color
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
     private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
+    private InputAction _cancelAction;
     private float _tipHeight;
     private RaycastHit _touch;
     private PaintCanvas _paintCanvas;
@@ -23,26 +25,38 @@ public class Eraser : MonoBehaviour
     private bool _erasing;
     private bool lockZPosition = false;
     private bool hasCollided = false; // Flag to track if collision has already happened
-
+    private Vector3 _originalPosition;
+    private Quaternion _originalRotation;
     void Start()
     {
         _tipHeight = _eraserTip.localScale.y;
+        _originalPosition = transform.position;
+        _originalRotation = transform.rotation;
     }
 
     void OnEnable()
     {
         var actionMap = inputActions.FindActionMap("Controller");
         _triggerAction = actionMap.FindAction("Trigger");
+        _cancelAction = actionMap.FindAction("Secondary Button");
         _triggerAction.Enable();
+        _cancelAction.Enable();
     }
 
     void OnDisable()
     {
         _triggerAction.Disable();
+        _cancelAction.Disable();
     }
 
     void Update()
     {
+        if (_cancelAction.triggered)
+        {
+            ResetTool();
+            return;
+        }
+
         // Lock Z position in Update() to ensure marker stays in place
         if (lockZPosition)
         {
@@ -149,5 +163,17 @@ public class Eraser : MonoBehaviour
     {
         Color[] eraseColors = Enumerable.Repeat(_backgroundColor, _tipSize * _tipSize).ToArray();
         _paintCanvas.texture.SetPixels(x, y, _tipSize, _tipSize, eraseColors);
+    }
+
+    private void ResetTool()
+    {
+        transform.position = _originalPosition;
+        transform.rotation = _originalRotation;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        _erasing = false;
+        lockZPosition = false;
+        hasCollided = false;
+                _toolController.ResetCurrentTool();
+
     }
 }

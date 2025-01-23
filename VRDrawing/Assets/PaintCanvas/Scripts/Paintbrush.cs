@@ -9,11 +9,13 @@ public class Paintbrush : MonoBehaviour
     [SerializeField] private Transform _brushTip;
     [SerializeField] private int _brushSize = 30; // Larger size for brush strokes
     [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private ToolController _toolController;
     private float _opacity = 0.5f; // Semi-transparency for blending
     private Texture2D _brushTexture; // Optional texture for brush shape
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
     private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
+    private InputAction _cancelAction;
     private Renderer _renderer;
     private float _brushHeight;
     private RaycastHit _touch;
@@ -25,24 +27,37 @@ public class Paintbrush : MonoBehaviour
     private bool _drawing;
     private bool lockZPosition = false;
     private bool hasCollided = false; // Flag to track if collision has already happened
+    private Vector3 _originalPosition;
+    private Quaternion _originalRotation;
     void Start()
     {
         _renderer = _brushTip.GetComponent<Renderer>();
         _brushHeight = _brushTip.localScale.y;
+        _originalPosition = transform.position;
+        _originalRotation = transform.rotation;
     }
     void OnEnable()
     {
         var actionMap = inputActions.FindActionMap("Controller");
         _triggerAction = actionMap.FindAction("Trigger");
+        _cancelAction = actionMap.FindAction("Secondary Button");
         _triggerAction.Enable();
+        _cancelAction.Enable();
     }
 
     void OnDisable()
     {
         _triggerAction.Disable();
+        _cancelAction.Disable();
     }
     void Update()
     {
+        if (_cancelAction.triggered)
+        {
+            ResetTool();
+            return;
+        }
+
         // Lock Z position in Update() to ensure marker stays in place
         if (lockZPosition)
         {
@@ -194,5 +209,16 @@ public class Paintbrush : MonoBehaviour
     public void SetColor(Material material)
     {
         _renderer.material = material;
+    }
+
+    private void ResetTool()
+    {
+        transform.position = _originalPosition;
+        transform.rotation = _originalRotation;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        _drawing = false;
+        lockZPosition = false;
+        hasCollided = false;
+        _toolController.ResetCurrentTool();
     }
 }

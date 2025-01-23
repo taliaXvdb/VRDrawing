@@ -9,11 +9,13 @@ public class Pencil : MonoBehaviour
     [SerializeField] private Transform _pencilTip;
     [SerializeField] private int _tipSize = 15;
     [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private ToolController _toolController;
     private float _opacity = 0.2f; // Adjust for semi-transparent strokes
     private float _grainIntensity = 0.3f; // Intensity of the grain effect
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
     private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
+    private InputAction _cancelAction;
     private Renderer _renderer;
     private Color[] _colors;
     private float _tipHeight;
@@ -26,31 +28,44 @@ public class Pencil : MonoBehaviour
     private bool _drawing;
     private bool lockZPosition = false;
     private bool hasCollided = false; // Flag to track if collision has already happened
+    private Vector3 _originalPosition;
+    private Quaternion _originalRotation;
     // Start is called before the first frame update
     void Start()
     {
         _renderer = _pencilTip.GetComponent<Renderer>();
         _colors = GenerateGrainyColors();
         _tipHeight = _pencilTip.localScale.y;
+        _originalPosition = transform.position;
+        _originalRotation = transform.rotation;
     }
     void OnEnable()
     {
         var actionMap = inputActions.FindActionMap("Controller");
         _triggerAction = actionMap.FindAction("Trigger");
+        _cancelAction = actionMap.FindAction("Secondary Button");
         _triggerAction.Enable();
+        _cancelAction.Enable();
     }
 
     void OnDisable()
     {
+        _cancelAction.Disable();
         _triggerAction.Disable();
     }
     void Update()
     {
+        if (_cancelAction.triggered)
+        {
+            ResetTool();
+            return;
+        }
+
         // Lock Z position in Update() to ensure marker stays in place
         if (lockZPosition)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -4.8553f);
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180, transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
         if (_drawing)
@@ -183,5 +198,16 @@ public class Pencil : MonoBehaviour
     public void SetColor(Material material)
     {
         _renderer.material = material;
+    }
+
+    private void ResetTool()
+    {
+        transform.position = _originalPosition;
+        transform.rotation = _originalRotation;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        _drawing = false;
+        lockZPosition = false;
+        hasCollided = false;
+        _toolController.ResetCurrentTool();
     }
 }

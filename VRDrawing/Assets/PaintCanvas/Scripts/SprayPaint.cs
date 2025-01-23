@@ -9,9 +9,11 @@ public class SprayPaint : MonoBehaviour
     [SerializeField] private Transform _markerTip;
     [SerializeField] private int _tipSize = 25;
     [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private ToolController _toolController;
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
     private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
+    private InputAction _cancelAction;
     private Renderer _renderer;
     private Color[] _colors;
     private float _tipHeight;
@@ -26,29 +28,41 @@ public class SprayPaint : MonoBehaviour
     private bool _drawing;
     private bool lockZPosition = false;
     private bool hasCollided = false; // Flag to track if collision has already happened
-    // Start is called before the first frame update
+    private Vector3 _originalPosition;
+    private Quaternion _originalRotation;
     // Start is called before the first frame update
     void Start()
     {
         _renderer = _markerTip.GetComponent<Renderer>();
         _colors = Enumerable.Repeat(_renderer.material.color, _tipSize * _tipSize).ToArray();
         _tipHeight = _markerTip.localScale.y;
+        _originalPosition = transform.position;
+        _originalRotation = transform.rotation;
     }
     void OnEnable()
     {
         var actionMap = inputActions.FindActionMap("Controller");
         _triggerAction = actionMap.FindAction("Trigger");
+        _cancelAction = actionMap.FindAction("Secondary Button");
         _triggerAction.Enable();
+        _cancelAction.Enable();
     }
 
     void OnDisable()
     {
         _triggerAction.Disable();
+        _cancelAction.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_cancelAction.triggered)
+        {
+            ResetTool();
+            return;
+        }
+
         if (lockZPosition)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -4.9355f);
@@ -166,6 +180,16 @@ public class SprayPaint : MonoBehaviour
     {
         _renderer.material = material;
         _colors = Enumerable.Repeat(material.color, _tipSize * _tipSize).ToArray();
+    }
+    private void ResetTool()
+    {
+        transform.position = _originalPosition;
+        transform.rotation = _originalRotation;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        _drawing = false;
+        lockZPosition = false;
+        hasCollided = false;
+        _toolController.ResetCurrentTool();
     }
 }
 

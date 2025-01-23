@@ -73,7 +73,10 @@ public class ToolController : MonoBehaviour
                     {
                         lastSelectedTool = lastHoveredTool;
                         Debug.Log($"Selected: {lastSelectedTool.name}");
-                        _colorpickerCanvas.gameObject.SetActive(true);
+                        if (lastSelectedTool.name != "Eraser")
+                        {
+                            _colorpickerCanvas.gameObject.SetActive(true);
+                        }
                         _toolSelected = true;
                     }
                 }
@@ -87,6 +90,13 @@ public class ToolController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ResetCurrentTool()
+    {
+        lastSelectedTool = null;
+        _toolSelected = false;
+        _colorpickerCanvas.gameObject.SetActive(false);
     }
 
     public void ChangeColor(string color)
