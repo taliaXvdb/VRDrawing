@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System.IO;
 
 public class PaintCanvas : MonoBehaviour
 {
@@ -48,5 +49,48 @@ public class PaintCanvas : MonoBehaviour
         for (int i = 0; i < clearColors.Length; i++) clearColors[i] = clearColor;
         texture.SetPixels(clearColors);
         texture.Apply();
+    }
+
+    public void ExportPaintedLines(string filePath)
+    {
+        // Create a new texture for exporting
+        Texture2D exportTexture = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
+
+        // Get pixels from the main texture
+        Color[] pixels = texture.GetPixels();
+
+        // Set up a transparent background
+        Color[] exportPixels = new Color[pixels.Length];
+        for (int i = 0; i < pixels.Length; i++)
+        {
+            // Check if the pixel is painted (not transparent or background color)
+            if (pixels[i].a > 0.1f) // Adjust threshold as needed
+            {
+                exportPixels[i] = pixels[i]; // Keep painted color
+            }
+            else
+            {
+                exportPixels[i] = new Color(0, 0, 0, 0); // Transparent
+            }
+        }
+
+        // Apply the filtered pixels to the export texture
+        exportTexture.SetPixels(exportPixels);
+        exportTexture.Apply();
+
+        // Encode to PNG
+        byte[] pngData = exportTexture.EncodeToPNG();
+        if (pngData != null)
+        {
+            File.WriteAllBytes(filePath, pngData);
+            Debug.Log("Exported painted lines to: " + filePath);
+        }
+        else
+        {
+            Debug.LogError("Failed to encode texture to PNG.");
+        }
+
+        // Cleanup
+        Destroy(exportTexture);
     }
 }
