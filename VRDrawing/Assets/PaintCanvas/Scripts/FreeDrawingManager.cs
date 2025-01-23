@@ -63,6 +63,7 @@ public class FreeDrawingManager : MonoBehaviour
     public void GoToMainMenu()
     {
         Debug.Log("Going back to main menu!");
+        SceneManager.LoadScene("Main");
     }
 
     public void StartNewDrawing()
