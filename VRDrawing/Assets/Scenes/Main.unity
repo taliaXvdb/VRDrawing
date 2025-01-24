@@ -500,7 +500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8958379805665951617, guid: 1eb67158e3a1b2b49af93c1f0b04363e, type: 3}
       propertyPath: m_Name
-      value: HoverHouse0Canvas
+      value: HoverHouse03Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 8958379805665951617, guid: 1eb67158e3a1b2b49af93c1f0b04363e, type: 3}
       propertyPath: m_IsActive
@@ -660,6 +660,59 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &302063192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302063193}
+  - component: {fileID: 302063194}
+  m_Layer: 0
+  m_Name: DoorHouse02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &302063193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302063192}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.603375, z: 0, w: 0.79745764}
+  m_LocalPosition: {x: 36.504, y: 8.817, z: 14.372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425285670}
+  m_LocalEulerAnglesHint: {x: 0, y: 74.224, z: 0}
+--- !u!65 &302063194
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302063192}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 3, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &328119473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1551,6 +1604,8 @@ Transform:
   - {fileID: 1175772426}
   - {fileID: 1288351364}
   - {fileID: 1666401629}
+  - {fileID: 302063193}
+  - {fileID: 2064425620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1447768779
@@ -4576,6 +4631,59 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 3459870302744588355, guid: 1eb67158e3a1b2b49af93c1f0b04363e, type: 3}
   m_PrefabInstance: {fileID: 2020609831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2064425619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064425620}
+  - component: {fileID: 2064425621}
+  m_Layer: 0
+  m_Name: DoorHouse03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2064425620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064425619}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.8936613, z: 0, w: 0.44874206}
+  m_LocalPosition: {x: 36.053, y: 8.931, z: -7.612}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425285670}
+  m_LocalEulerAnglesHint: {x: 0, y: 126.674, z: 0}
+--- !u!65 &2064425621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064425619}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 3, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2090309274 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2854779863015927643, guid: d0b415a7138695345af7d465635136dd, type: 3}
