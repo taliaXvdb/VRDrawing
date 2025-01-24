@@ -63,8 +63,6 @@ public class GameModeSelector : MonoBehaviour
                 if (hoveredObject != lastHoveredObject)
                 {
                     lastHoveredObject = hoveredObject;
-
-                    settingUpGamemode = true;
                     Debug.Log($"Hovering over: {hoveredObject.name}");
                     if (hoveredObject.name == "DoorHouse01")
                     {
@@ -100,15 +98,15 @@ public class GameModeSelector : MonoBehaviour
                 Debug.Log("Cancel is pressed");
                 HideSettings();
             }
-            else
+        }
+        else
+        {
+            // Reset when no object is hit or the object doesn't have the correct tag
+            if (lastHoveredObject != null)
             {
-                // Reset when no object is hit or the object doesn't have the correct tag
-                if (lastHoveredObject != null)
-                {
-                    Debug.Log("No longer hovering over anything.");
-                    lastHoveredObject = null;
-                    HideHoverCanvas();
-                }
+                Debug.Log("No longer hovering over anything.");
+                lastHoveredObject = null;
+                HideHoverCanvas();
             }
         }
     }
@@ -169,6 +167,8 @@ public class GameModeSelector : MonoBehaviour
         house01Canvas.gameObject.SetActive(false);
         house02Canvas.gameObject.SetActive(false);
         house03Canvas.gameObject.SetActive(false);
+        lastHoveredObject = null;
+        settingUpGamemode = false;
     }
 
     public void startNewFreeDrawing()
