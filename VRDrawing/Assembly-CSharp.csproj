@@ -84,6 +84,7 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\CalloutGazeController.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\PaintCanvasLine.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\GameModeSelector.cs" />
     <Compile Include="Assets\Portals\The Portal Collection\Scripts\SimpleCameraControllerPortals.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\SprayPaint.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\VegetationBendControl.cs" />

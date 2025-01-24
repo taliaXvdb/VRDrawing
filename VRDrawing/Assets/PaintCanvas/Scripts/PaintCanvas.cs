@@ -51,8 +51,19 @@ public class PaintCanvas : MonoBehaviour
         texture.Apply();
     }
 
-    public void ExportPaintedLines(string filePath)
+    public void ExportPaintedLines(string folderName, string fileName)
     {
+
+        // Define the path to save the PNG in the Assets folder
+        string directoryPath = Application.dataPath + "/" + folderName;
+
+        // Ensure the folder exists
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
+        string filePath = directoryPath + "/" + fileName;
         // Create a new texture for exporting
         Texture2D exportTexture = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
 
@@ -84,6 +95,7 @@ public class PaintCanvas : MonoBehaviour
         {
             File.WriteAllBytes(filePath, pngData);
             Debug.Log("Exported painted lines to: " + filePath);
+            UnityEditor.AssetDatabase.Refresh();
         }
         else
         {

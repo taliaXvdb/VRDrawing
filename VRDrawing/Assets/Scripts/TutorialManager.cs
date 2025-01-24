@@ -58,6 +58,8 @@ public class TutorialManager : MonoBehaviour
         DoingTutorial = false;
         _animator.SetBool("IsDone", true);
         StartCoroutine(Despawn());
+        GameModeSelector gameModeSelector = GameObject.FindObjectOfType<GameModeSelector>();
+        gameModeSelector.enabled = true;
     }
 
     public void StartMushroomPath()

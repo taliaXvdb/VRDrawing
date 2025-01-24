@@ -42,8 +42,8 @@ public class FreeDrawingManager : MonoBehaviour
     public void SaveDrawing()
     {
         Debug.Log("Drawing saved!");
-        string filePath = Application.persistentDataPath + "/PaintedLines.png";
-        _drawingCanvas.ExportPaintedLines(filePath);
+        string filename = "MyDrawing.png";
+        _drawingCanvas.ExportPaintedLines("SavedDrawings", filename);
         _saveDrawingCanvas.gameObject.SetActive(false);
         _stopDrawingCanvas.gameObject.SetActive(true);
     }

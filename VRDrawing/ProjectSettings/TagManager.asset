@@ -9,6 +9,7 @@ TagManager:
   - PaintCanvasLine
   - FullText
   - Tool
+  - Door
   layers:
   - Default
   - TransparentFX

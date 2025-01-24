@@ -89,6 +89,8 @@ public class MushroomActions : MonoBehaviour
                 _animator.SetBool("IsIdle", true);
                 _animator.SetBool("IsWalking", false);
                 hasReachedEnd = false;
+                GameModeSelector gameModeSelector = GameObject.FindObjectOfType<GameModeSelector>();
+                gameModeSelector.enabled = true;
             }
         }
     }
