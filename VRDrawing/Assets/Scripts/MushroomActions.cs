@@ -56,6 +56,10 @@ public class MushroomActions : MonoBehaviour
                 _tutorialManager.ShowHouse03();
             }
         }
+        else
+        {
+            _tutorialManager.ShowEnd();
+        }
     }
 
     void OnPathEndReached()

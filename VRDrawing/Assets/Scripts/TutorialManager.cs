@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Canvas _house01Canvas;
     [SerializeField] private Canvas _house02Canvas;
     [SerializeField] private Canvas _house03Canvas;
+    [SerializeField] private Canvas _endCanvas;
     [SerializeField] private List<Button> _buttons;
     public bool DoingTutorial = false;
     private Animator _animator;
@@ -56,6 +57,18 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Tutorial Skipped!");
         _gameManager.isTutorial = false;
         DoingTutorial = false;
+        _animator.SetBool("IsDone", true);
+        StartCoroutine(Despawn());
+        GameModeSelector gameModeSelector = GameObject.FindObjectOfType<GameModeSelector>();
+        gameModeSelector.enabled = true;
+    }
+
+    public void EndTutorial()
+    {
+        Debug.Log("Tutorial Ended!");
+        _gameManager.isTutorial = false;
+        DoingTutorial = false;
+        _endCanvas.gameObject.SetActive(false);
         _animator.SetBool("IsDone", true);
         StartCoroutine(Despawn());
         GameModeSelector gameModeSelector = GameObject.FindObjectOfType<GameModeSelector>();
@@ -117,5 +130,17 @@ public class TutorialManager : MonoBehaviour
         _textWriter.Start();
     }
 
-
+    public void ShowEnd()
+    {
+        _endCanvas.gameObject.SetActive(true);
+        _textWriter.enabled = true;
+        _textWriter.canvas = _endCanvas;
+        _textWriter.buttons = _buttons;
+        if (_endCanvas.GetComponentInChildren<TMP_Text>().CompareTag("FullText"))
+        {
+            _tutorialText = _endCanvas.GetComponentInChildren<TMP_Text>();
+            _textWriter.uiText = _tutorialText;
+        }
+        _textWriter.Start();
+    }
 }
