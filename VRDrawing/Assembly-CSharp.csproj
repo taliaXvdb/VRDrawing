@@ -65,45 +65,69 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ButterflySpawn.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Kettle.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\DestroyObject.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\Marker.cs" />
+    <Compile Include="Assets\Scripts\XRCollisionControl.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoTimeScrubControl.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\AirConditioner.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoPlayerRenderTexture.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\YureiManagerBRP.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\PaintCanvas.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Rotator.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\TimeZoneEnum.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRKnob.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Audio.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\Paintbrush.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\CeillingLight.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BooleanToggleVisualsController.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\RayAttachModifier.cs" />
     <Compile Include="Assets\SiameseModel\Scripts\SiameseModelScript.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ButterflySpawnArea.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\Eraser.cs" />
+    <Compile Include="Assets\Scripts\SpawnRoom.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\TimeZoneConverter.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\SampleScene.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\DeskLamp.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\YureiButtonAttribute.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Callout.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\CalloutGazeController.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\PaintCanvasLine.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\GameModeSelector.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\ExtAirConditioner.cs" />
     <Compile Include="Assets\Portals\The Portal Collection\Scripts\SimpleCameraControllerPortals.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Clock.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\SprayPaint.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\VegetationBendControl.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\OfficeChair.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\ToolController.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Computer.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\ExitGame.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BezierCurve.cs" />
     <Compile Include="Assets\Scripts\TutorialManager.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\FreeDrawingManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\Inspector\YureiInspector.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Monitor.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\LaunchProjectile.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\TurnOnAble.cs" />
     <Compile Include="Assets\Scripts\TextWriter.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\StepManager.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\Inspector\IgnoreInInspectorAttribute.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Setup\BrpSetup.cs" />
     <Compile Include="Assets\Scripts\MushroomActions.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Setup\UrpSetup.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\BushLeafTrigger.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\Pencil.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\WindControl.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\YureiManagerURP.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\AnchorVisuals.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\YureiPostProcessorIdentifier.cs" />
     <Compile Include="Assets\AccuracyProces\Processor.cs" />
+    <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Suitcase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -1010,6 +1034,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1252,6 +1280,10 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Mathematics">
