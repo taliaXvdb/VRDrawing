@@ -95,9 +95,11 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\CalloutGazeController.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\PaintCanvasLine.cs" />
+    <Compile Include="Assets\PaintCanvas\Scripts\TextTyper.cs" />
     <Compile Include="Assets\Scripts\GameModeSelector.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\ExtAirConditioner.cs" />
     <Compile Include="Assets\Portals\The Portal Collection\Scripts\SimpleCameraControllerPortals.cs" />
+    <Compile Include="Assets\PaintCanvas\Scripts\DrawTutorialManager.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Clock.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\SprayPaint.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\VegetationBendControl.cs" />
