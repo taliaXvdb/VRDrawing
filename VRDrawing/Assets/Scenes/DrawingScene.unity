@@ -2173,7 +2173,7 @@ PrefabInstance:
       objectReference: {fileID: 1073275802}
     - target: {fileID: 2854779863015927643, guid: eb77fbd79395a9f4688e86cde036bdce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EndTutorial
+      value: tutorialCounter
       objectReference: {fileID: 0}
     - target: {fileID: 2854779863015927643, guid: eb77fbd79395a9f4688e86cde036bdce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4477,7 +4477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11050d0dc2ef113449b014ba9b415c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
   uiText: {fileID: 0}
   buttons: []
   typingSpeed: 0.05
