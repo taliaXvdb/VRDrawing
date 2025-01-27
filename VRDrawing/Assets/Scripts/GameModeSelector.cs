@@ -176,4 +176,10 @@ public class GameModeSelector : MonoBehaviour
         Debug.Log("Starting new drawing!");
         SceneManager.LoadScene("DrawingScene");
     }
+
+    public void startNewAccuracyDrawing()
+    {
+        Debug.Log("Starting new accuracy drawing!");
+        SceneManager.LoadScene("FollowTheLine");
+    }
 }
