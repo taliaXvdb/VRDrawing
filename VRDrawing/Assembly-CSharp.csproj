@@ -75,6 +75,7 @@
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\YureiManagerBRP.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\PaintCanvas.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Rotator.cs" />
+    <Compile Include="Assets\AccuracyProcess\Processor.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\TimeZoneEnum.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRKnob.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Audio.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\ExtAirConditioner.cs" />
     <Compile Include="Assets\Portals\The Portal Collection\Scripts\SimpleCameraControllerPortals.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\DrawTutorialManager.cs" />
+    <Compile Include="Assets\AccuracyProcess\BasicMarker.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Clock.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\SprayPaint.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\VegetationBendControl.cs" />
@@ -120,16 +122,16 @@
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\Inspector\IgnoreInInspectorAttribute.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Setup\BrpSetup.cs" />
     <Compile Include="Assets\Scripts\MushroomActions.cs" />
+    <Compile Include="Assets\AccuracyProcess\LineDrawingManager.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Setup\UrpSetup.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\BushLeafTrigger.cs" />
     <Compile Include="Assets\PaintCanvas\Scripts\Pencil.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\WindControl.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\YureiManagerURP.cs" />
+    <Compile Include="Assets\AccuracyProcess\LineTutorialManager.cs" />
     <Compile Include="Assets\Idyllic Fantasy Nature\Scripts\CameraMovement.cs" />
-    <Compile Include="Assets\AccuracyProces\BasicMarker.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\AnchorVisuals.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Utility\YureiPostProcessorIdentifier.cs" />
-    <Compile Include="Assets\AccuracyProces\Processor.cs" />
     <Compile Include="Assets\Fries and Seagull\Interior 01\Scripts\Suitcase.cs" />
   </ItemGroup>
   <ItemGroup>

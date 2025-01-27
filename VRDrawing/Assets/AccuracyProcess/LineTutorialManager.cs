@@ -1,30 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
-public class DrawTutorialManager : MonoBehaviour
+public class LineTutorialManager : MonoBehaviour
 {
     [SerializeField] private Canvas _startTutorialCanvas;
     [SerializeField] private Canvas _toolTutorialCanvas;
     [SerializeField] private Canvas _useToolTutorialCanvas;
     [SerializeField] private Canvas _drawTutorialCanvas;
-    [SerializeField] private Canvas _canceltoolTutorialCanvas;
     [SerializeField] private Canvas _saveTutorialCanvas;
     [SerializeField] private List<Button> _buttons;
     public bool DoingTutorial = true;
     private int _currentStep = 0;
     private TextTyper _textTyper;
-    private ToolController _toolController;
     private TMP_Text _tutorialText;
+    // Start is called before the first frame update
     // Start is called before the first frame update
     void Start()
     {
         _textTyper = GameObject.FindObjectOfType<TextTyper>();
-        _toolController = GameObject.FindObjectOfType<ToolController>();
-        _toolController.enabled = false;
     }
 
     // Update is called once per frame
@@ -52,14 +48,9 @@ public class DrawTutorialManager : MonoBehaviour
         if (_currentStep == 4)
         {
             _drawTutorialCanvas.gameObject.SetActive(false);
-            ShowCancelToolTutorial();
-        }
-        if (_currentStep == 5)
-        {
-            _canceltoolTutorialCanvas.gameObject.SetActive(false);
             ShowSaveTutorial();
         }
-        if (_currentStep == 6)
+        if (_currentStep == 5)
         {
             _saveTutorialCanvas.gameObject.SetActive(false);
             EndTutorial();
@@ -80,8 +71,6 @@ public class DrawTutorialManager : MonoBehaviour
 
         // Directly deactivate canvas for testing
         _startTutorialCanvas.gameObject.SetActive(false);
-
-        _toolController.enabled = true;
     }
 
 
@@ -91,7 +80,6 @@ public class DrawTutorialManager : MonoBehaviour
         _currentStep = -1;
         DoingTutorial = false;
         _drawTutorialCanvas.gameObject.SetActive(false);
-        _toolController.enabled = true;
     }
 
     public void tutorialCounter()
@@ -149,20 +137,6 @@ public class DrawTutorialManager : MonoBehaviour
         {
             _drawTutorialCanvas.gameObject.SetActive(true);
             _tutorialText = _drawTutorialCanvas.GetComponentInChildren<TMP_Text>();
-            _textTyper.buttons = _buttons;
-            if (_tutorialText.CompareTag("FullText"))
-            {
-                _textTyper.StartTyping(_tutorialText);
-            }
-        }
-    }
-
-    private void ShowCancelToolTutorial()
-    {
-        if (!_canceltoolTutorialCanvas.gameObject.activeSelf) // Ensure this runs only once
-        {
-            _canceltoolTutorialCanvas.gameObject.SetActive(true);
-            _tutorialText = _canceltoolTutorialCanvas.GetComponentInChildren<TMP_Text>();
             _textTyper.buttons = _buttons;
             if (_tutorialText.CompareTag("FullText"))
             {

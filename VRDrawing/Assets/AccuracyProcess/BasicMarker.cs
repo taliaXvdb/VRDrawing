@@ -11,7 +11,7 @@ public class BasicMarker : MonoBehaviour
 {
     [SerializeField] private Transform _markerTip;
     [SerializeField] private InputActionAsset inputActions;
-    private int _tipSize = 15;
+    private int _tipSize = 10;
     private float smoothingFactor = 0.8f; // Adjust to control smoothness
     private float jitterThreshold = 0.08f; // Minimum movement to consider
     private InputAction _triggerAction;
