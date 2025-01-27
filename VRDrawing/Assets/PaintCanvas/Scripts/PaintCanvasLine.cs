@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 public class PaintCanvasLine : MonoBehaviour
 {
@@ -13,14 +14,17 @@ public class PaintCanvasLine : MonoBehaviour
         var r = GetComponent<Renderer>();
         _material = r.material;
 
-        // Initialize the paintable texture
         texture = new Texture2D((int)textureSize.x, (int)textureSize.y, TextureFormat.RGBA32, false);
+
+        // Initialize with transparent pixels
+        Color[] transparentPixels = Enumerable.Repeat(new Color(0, 0, 0, 0), (int)textureSize.x * (int)textureSize.y).ToArray();
+        texture.SetPixels(transparentPixels);
         texture.Apply();
 
-        // Set the main texture to the paintable canvas
+        // Assign the texture to the material
         _material.SetTexture("_MainTex", texture);
 
-        // Set the guide texture (this should be assigned in the Inspector or dynamically loaded)
+        // Assign the guide texture (if available)
         if (guideTexture != null)
         {
             _material.SetTexture("_GuideTex", guideTexture);

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5692300587058194934}
   - component: {fileID: 7285312454947292665}
   - component: {fileID: 3205442871325581166}
+  - component: {fileID: 6837502972072692977}
   m_Layer: 0
   m_Name: Paintcanvas
   m_TagString: PaintCanvas
@@ -120,5 +121,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 0}
-  guideTexture: {fileID: 2800000, guid: 548d7a2a3964c06409ae90b4a196fb26, type: 3}
   textureSize: {x: 2048, y: 2048}
+  canvasMaterial: {fileID: 0}
+--- !u!65 &6837502972072692977
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6464390447647761503}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}

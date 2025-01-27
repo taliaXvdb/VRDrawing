@@ -33,24 +33,28 @@ Shader "Custom/FollowTheLine"
             sampler2D _GuideTex;
 
             v2f vert (appdata_t v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.texcoord;
-                return o;
-            }
+        {
+            v2f o;
+            UNITY_INITIALIZE_OUTPUT(v2f, o);
+            o.vertex = UnityObjectToClipPos(v.vertex);
+            o.uv = v.texcoord;
+            return o;
+        }
 
-            fixed4 frag (v2f i) : SV_Target
-            {
-                // Get the paintable texture color
-                fixed4 mainColor = tex2D(_MainTex, i.uv);
-                
-                // Get the guide texture color
-                fixed4 guideColor = tex2D(_GuideTex, i.uv);
-                
-                // Blend the textures (e.g., overlay the guide at 50% opacity)
-                return lerp(mainColor, guideColor, 0.5);
-            }
+
+        fixed4 frag (v2f i) : SV_Target
+        {
+            // Get the paintable texture color
+            fixed4 mainColor = tex2D(_MainTex, i.uv);
+        
+            // Get the guide texture color
+            fixed4 guideColor = tex2D(_GuideTex, i.uv);
+        
+            // Blend the guide texture and the paint texture:
+            // Show the guide texture where the paint texture alpha is 0.
+            return mainColor.a > 0.0 ? mainColor : guideColor;
+        }
+        
             ENDCG
         }
     }
